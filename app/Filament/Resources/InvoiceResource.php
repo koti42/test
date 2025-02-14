@@ -341,72 +341,96 @@ class InvoiceResource extends Resource
                                 </div>
 
                                 <!-- Ürün Ekleme Modalı -->
-                                <template x-teleport="body">
-                                    <div x-show="showProductModal"
-                                        x-trap.noscroll="showProductModal"
-                                        class="fixed inset-0 z-[999] overflow-y-auto"
-                                        @click.self="showProductModal = false">
-                                        <div class="min-h-screen px-4 text-center">
-                                            <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
-                                                x-show="showProductModal"
-                                                x-transition:enter="ease-out duration-300"
-                                                x-transition:enter-start="opacity-0"
-                                                x-transition:enter-end="opacity-100"
-                                                x-transition:leave="ease-in duration-200"
-                                                x-transition:leave-start="opacity-100"
-                                                x-transition:leave-end="opacity-0">
-                                            </div>
+                                <div x-show="showProductModal" 
+                                    class="fixed inset-0 z-[60] overflow-y-auto"
+                                    x-cloak
+                                    style="display: none;">
+                                    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showProductModal = false"></div>
 
-                                            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full"
-                                                x-show="showProductModal"
-                                                @click.outside="showProductModal = false"
-                                                x-transition:enter="ease-out duration-300"
-                                                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                                                x-transition:leave="ease-in duration-200"
-                                                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                                                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                                                <div class="bg-white p-6">
-                                                    <div class="flex items-center justify-between mb-6">
-                                                        <h3 class="text-lg font-semibold text-gray-800">Yeni Ürün Ekle</h3>
-                                                        <button @click.prevent="showProductModal = false" type="button" class="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                    <form @submit.prevent="saveProduct">
-                                                        <div class="space-y-4">
+                                        <div class="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl w-full">
+                                            <div class="bg-white px-6 pt-6 pb-6">
+                                                <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                                                    <h3 class="text-xl font-semibold text-gray-900">
+                                                        Yeni Ürün Ekle
+                                                    </h3>
+                                                    <button @click="showProductModal = false" type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                                                        <span class="sr-only">Kapat</span>
+                                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <form @submit.prevent="$event.preventDefault()">
+                                                    <div class="grid grid-cols-2 gap-6">
+                                                        <div class="space-y-6">
                                                             <div>
                                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Ürün Adı</label>
-                                                                <input type="text" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500">
+                                                                <input type="text" name="product_name" required placeholder="Ürün adını giriniz" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
                                                             </div>
                                                             <div>
+                                                                <label class="block text-sm font-medium text-gray-700 mb-1">Ürün Kodu</label>
+                                                                <input type="text" name="product_code" placeholder="Ürün kodunu giriniz" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                            </div>
+                                                            <div>
+                                                                <label class="block text-sm font-medium text-gray-700 mb-1">Barkod</label>
+                                                                <input type="text" name="barcode" placeholder="Barkod numarasını giriniz" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                            </div>
+                                                            <div>
+                                                                <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                                                                <select name="category" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                                    <option value="">Kategori seçiniz</option>
+                                                                    <option value="elektronik">Elektronik</option>
+                                                                    <option value="giyim">Giyim</option>
+                                                                    <option value="gida">Gıda</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="space-y-6">
+                                                            <div>
                                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Miktar</label>
-                                                                <input type="number" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500">
+                                                                <input type="number" name="quantity" required min="1" placeholder="Miktar giriniz" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                            </div>
+                                                            <div>
+                                                                <label class="block text-sm font-medium text-gray-700 mb-1">Birim</label>
+                                                                <select name="unit" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                                    <option value="adet">Adet</option>
+                                                                    <option value="kg">KG</option>
+                                                                    <option value="lt">LT</option>
+                                                                    <option value="mt">MT</option>
+                                                                </select>
                                                             </div>
                                                             <div>
                                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Birim Fiyat</label>
-                                                                <input type="number" step="0.01" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500">
+                                                                <input type="number" name="unit_price" step="0.01" required min="0" placeholder="Birim fiyat giriniz" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
                                                             </div>
-                                                            <div class="flex justify-end space-x-3 mt-6">
-                                                                <button type="button" @click.prevent="showProductModal = false" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                                                    İptal
-                                                                </button>
-                                                                <button type="submit" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                                                                    Kaydet
-                                                                </button>
+                                                            <div>
+                                                                <label class="block text-sm font-medium text-gray-700 mb-1">KDV Oranı (%)</label>
+                                                                <select name="tax_rate" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                                    <option value="0">0%</option>
+                                                                    <option value="1">1%</option>
+                                                                    <option value="8">8%</option>
+                                                                    <option value="18" selected>18%</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                    <div class="mt-12 border-t border-gray-100 pt-6">
+                                                        <div class="flex justify-start space-x-4">
+                                                            <button type="submit" class="w-32 inline-flex justify-center rounded-lg border border-transparent bg-primary-600 px-4 py-3 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                                                                Kaydet
+                                                            </button>
+                                                            <button type="button" @click="showProductModal = false" class="w-32 inline-flex justify-center rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                                                                İptal
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </template>
+                                </div>
                             </div>
-                            
-                
                         ');
                     })
                     ->modalWidth('7xl'),
