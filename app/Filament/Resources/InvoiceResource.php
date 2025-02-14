@@ -245,38 +245,142 @@ class InvoiceResource extends Resource
                                                         <thead>
                                                             <tr>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ürün ID</th>
+                                                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ürün Kodu</th>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ürün Adı</th>
+                                                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Miktar</th>
+                                                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Birim</th>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Birim Fiyat</th>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">KDV</th>
                                                                 <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Toplam</th>
+                                                                <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">İşlemler</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="bg-white divide-y divide-gray-200">
                                                             <tr class="hover:bg-gray-50">
                                                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">1</td>
-                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Örnek Ürün</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">PRD-001</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">iPhone 14 Pro</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Elektronik</span>
+                                                                </td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">2</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Adet</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">52,499.00 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">18,899.64 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">123,897.64 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <div class="flex items-center space-x-2">
+                                                                        <button class="text-blue-600 hover:text-blue-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                        <button class="text-red-600 hover:text-red-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="hover:bg-gray-50">
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">2</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">PRD-002</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">MacBook Pro M2</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Elektronik</span>
+                                                                </td>
                                                                 <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">1</td>
-                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">' . number_format($record->total_amount, 2) . ' ' . $record->currency . '</td>
-                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">' . number_format($record->kdv_amount, 2) . ' ' . $record->currency . '</td>
-                                                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">' . number_format($record->total_amount + $record->kdv_amount, 2) . ' ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Adet</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">72,999.00 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">13,139.82 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">86,138.82 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <div class="flex items-center space-x-2">
+                                                                        <button class="text-blue-600 hover:text-blue-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                        <button class="text-red-600 hover:text-red-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="hover:bg-gray-50">
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">3</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">PRD-003</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Nike Air Max</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Giyim</span>
+                                                                </td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">2</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Adet</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">2,499.00 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">899.64 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">5,897.64 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <div class="flex items-center space-x-2">
+                                                                        <button class="text-blue-600 hover:text-blue-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                        <button class="text-red-600 hover:text-red-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="hover:bg-gray-50">
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">4</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">PRD-004</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Organik Zeytinyağı</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Gıda</span>
+                                                                </td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">5</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">Lt</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">399.90 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">359.91 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">2,359.41 ' . $record->currency . '</td>
+                                                                <td class="px-3 py-3 whitespace-nowrap text-sm text-gray-600">
+                                                                    <div class="flex items-center space-x-2">
+                                                                        <button class="text-blue-600 hover:text-blue-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                        <button class="text-red-600 hover:text-red-800">
+                                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot class="bg-gray-50">
                                                             <tr>
-                                                                <td colspan="4" class="px-3 py-3"></td>
+                                                                <td colspan="6" class="px-3 py-3"></td>
                                                                 <td class="px-3 py-3 text-sm font-medium text-gray-700">Ara Toplam:</td>
-                                                                <td class="px-3 py-3 text-sm text-gray-900">' . number_format($record->total_amount, 2) . ' ' . $record->currency . '</td>
+                                                                <td colspan="2" class="px-3 py-3 text-sm text-gray-900">' . number_format(128396.90, 2) . ' ' . $record->currency . '</td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="4" class="px-3 py-3"></td>
+                                                                <td colspan="6" class="px-3 py-3"></td>
                                                                 <td class="px-3 py-3 text-sm font-medium text-gray-700">KDV:</td>
-                                                                <td class="px-3 py-3 text-sm text-gray-900">' . number_format($record->kdv_amount, 2) . ' ' . $record->currency . '</td>
+                                                                <td colspan="2" class="px-3 py-3 text-sm text-gray-900">' . number_format(33199.01, 2) . ' ' . $record->currency . '</td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="4" class="px-3 py-3"></td>
+                                                                <td colspan="6" class="px-3 py-3"></td>
                                                                 <td class="px-3 py-3 text-sm font-medium text-gray-900">Genel Toplam:</td>
-                                                                <td class="px-3 py-3 text-sm font-bold text-gray-900">' . number_format($record->total_amount + $record->kdv_amount, 2) . ' ' . $record->currency . '</td>
+                                                                <td colspan="2" class="px-3 py-3 text-sm font-bold text-gray-900">' . number_format(218293.51, 2) . ' ' . $record->currency . '</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
